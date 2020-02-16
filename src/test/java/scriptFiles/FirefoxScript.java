@@ -24,12 +24,10 @@ public class FirefoxScript {
         driver = new FirefoxDriver(options);
         driver.get(domain);
         driver.manage().window().maximize();
-        System.out.println("*** Script start ***");
         return driver;
     }
 
     public static void closeUp(WebDriver driver) {
-        System.out.println("*** Script end ***");
         driver.quit();
     }
 }

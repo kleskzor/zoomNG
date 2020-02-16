@@ -11,6 +11,7 @@ public class ChromeScript {
 
     private static WebDriver driver;
 
+    // Using options I always used in the past, it's a mix of different tweaks I need for different websites. It doesn't make much sense here except for maximizing, which I do a bit differently in FF and for IE which starts maximized
     public static WebDriver setUp(String domain) {
         System.setProperty(WEBDRIVER, WEBDRIVER_LOCATION);
         ChromeOptions options = new ChromeOptions();
@@ -22,12 +23,11 @@ public class ChromeScript {
         options.addArguments("disable-geolocation");
         driver = new ChromeDriver(options);
         driver.get(domain);
-        System.out.println("*** Script start ***");
         return driver;
     }
 
+    // Close and Quit because sometimes my test machine was being flooded with leftover driver executables
     public static WebDriver closeUp(WebDriver driver) {
-        System.out.println("*** Script end ***");
         driver.close();
         driver.quit();
         return driver;

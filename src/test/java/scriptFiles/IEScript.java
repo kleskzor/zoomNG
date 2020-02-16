@@ -12,19 +12,13 @@ public class IEScript {
 
     public static WebDriver setUp(String domain) {
         System.setProperty(WEBDRIVER_IE, WEBDRIVER_IE_LOCATION);
-        try {
-            driver = new InternetExplorerDriver();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        driver = new InternetExplorerDriver();
         driver.get(domain);
-        System.out.println("*** Script start ***");
         return driver;
     }
 
 
     public static WebDriver closeUp(WebDriver driver) {
-        System.out.println("*** Script end ***");
         driver.close();
         driver.quit();
         return driver;

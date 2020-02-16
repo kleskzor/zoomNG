@@ -31,30 +31,38 @@ public class ZoomIETest {
     @Test
     public void ChromeTest() {
 
+       // Initiating firstPage PO, fulfilling 1) Fill first and second question
         FirstPage firstPage = new FirstPage(driver);
         firstPage.checkThis();
         firstPage.fillFutureDate(5);
 
+        // 2) Validate that third question is mandatory
         Assert.assertTrue(firstPage.isMandatory());
-        firstPage.fillMonth();
 
+        // 3) Fill third question and go to another step
+        firstPage.fillMonth();
         SecondPage secondPage = firstPage.nextPage();
+
+        // 4) Fill next questions
         secondPage.fillShows();
         secondPage.fillColor();
 
+        // 5) Go back to first step & 6) Reverse text in third question
         firstPage = secondPage.previousPage();
         firstPage.reverseMonth();
 
+        // 7) Go to second step
         secondPage = firstPage.nextPage();
 
+        // 8) Check that both questions are still filed
         Assert.assertTrue(secondPage.checkFilledFirst());
-
         Assert.assertTrue(secondPage.checkFilledSecond());
 
+        // 9) Go to last step
         ThirdPage thirdPage = secondPage.nextPage();
 
+        //10) Fill last question and send form
         thirdPage.confirm();
-
         FinalPage finalPage = thirdPage.send();
     }
 

@@ -13,10 +13,10 @@ import java.util.Collections;
 
 public class SecondPage extends PageObject {
 
-    @FindBy(xpath = "//span[text()='Zpět']")
+    @FindBy(xpath = "(//span[contains(@class,'appsMaterialWizButtonPaperbuttonContent exportButtonContent')])[1]")
     private WebElement previousButton;
 
-    @FindBy(xpath = "//span[text()='Další']")
+    @FindBy(xpath = "(//span[contains(@class,'appsMaterialWizButtonPaperbuttonContent exportButtonContent')])[2]")
     private WebElement nextButton;
 
     @FindBy(xpath = "//span[text()='Black']")
@@ -25,9 +25,9 @@ public class SecondPage extends PageObject {
     @FindBy(xpath = "//div[contains(@class,'isCheckedNext isChecked')]")
     private WebElement favColorFilled;
 
+    // Chrome has again different elements shown
     @FindBy(xpath = "//div[contains(@class,'exportToggleEl isChecked')]")
     private WebElement favColorFilledChrome;
-
 
     @FindBy(xpath = "//textarea[contains(@aria-label,'Create list of your favorite movies')]")
     private WebElement textArea;
@@ -41,7 +41,7 @@ public class SecondPage extends PageObject {
     }
 
     public void fillShows() {
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<String> list = new ArrayList<>();
         Collections.addAll(list, "X-Files", "Monty Python's Flying Circus", "Star Trek: The Next Generation", "Shining", "Sunshine", "2001 - A Space Odyssey", "American Psycho", "Clockwork Orange", "Full Metal Jacket");
         Collections.shuffle(list);
         textArea.clear();
@@ -63,10 +63,6 @@ public class SecondPage extends PageObject {
     public boolean checkFilledSecond() {
         return favColorFilledChrome.isEnabled();
     }
-
-//    public boolean checkFilledSecondFF() {
-//        return favColorFilled.isEnabled();
-//    }
 
     public FirstPage previousPage() {
         previousButton.click();
