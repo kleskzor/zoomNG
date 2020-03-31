@@ -1,5 +1,6 @@
 package pageObjects.Zoom;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,7 +31,7 @@ public class SecondPage extends PageObject {
     private WebElement favColorFilledChrome;
 
     @FindBy(xpath = "//textarea[contains(@aria-label,'Create list of your favorite movies')]")
-    private WebElement textArea;
+    private WebElement favMovieInput;
 
     public SecondPage(WebDriver driver) {
         super(driver);
@@ -44,20 +45,21 @@ public class SecondPage extends PageObject {
         ArrayList<String> list = new ArrayList<>();
         Collections.addAll(list, "X-Files", "Monty Python's Flying Circus", "Star Trek: The Next Generation", "Shining", "Sunshine", "2001 - A Space Odyssey", "American Psycho", "Clockwork Orange", "Full Metal Jacket");
         Collections.shuffle(list);
-        textArea.clear();
+        favMovieInput.clear();
         for (int i = 0; i < 3; i++) {
-            textArea.sendKeys(list.get(i));
-            textArea.sendKeys(Keys.ENTER);
+            favMovieInput.sendKeys(list.get(i));
+            favMovieInput.sendKeys(Keys.ENTER);
         }
-        textArea.sendKeys(Keys.BACK_SPACE);
+        favMovieInput.sendKeys(Keys.BACK_SPACE);
     }
 
-    public void fillColor() {
+    public void fillColor(String color) {
+        driver.findElement(By.xpath("//span[text()='"+color+"']")).click();
         favColor.click();
     }
 
     public boolean checkFilledFirst() {
-        return !textArea.getText().isEmpty();
+        return !favMovieInput.getText().isEmpty();
     }
 
     public boolean checkFilledSecond() {

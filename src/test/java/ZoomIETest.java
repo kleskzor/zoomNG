@@ -29,7 +29,7 @@ public class ZoomIETest {
 
     //-----------------------------------Tests-----------------------------------
     @Test
-    public void ChromeTest() {
+    public void IETest() {
 
        // Initiating firstPage PO, fulfilling 1) Fill first and second question
         FirstPage firstPage = new FirstPage(driver);
@@ -45,7 +45,7 @@ public class ZoomIETest {
 
         // 4) Fill next questions
         secondPage.fillShows();
-        secondPage.fillColor();
+        secondPage.fillColor("Black");
 
         // 5) Go back to first step & 6) Reverse text in third question
         firstPage = secondPage.previousPage();
